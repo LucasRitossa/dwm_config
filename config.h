@@ -67,6 +67,7 @@ static Key keys[] = {
 	{ MODKEY,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,		XK_r,		spawn, 	SHCMD(TERMINAL " -e htop") },
 	{ MODKEY|ShiftMask,		XK_b,		spawn, 	SHCMD(TERMINAL " -e pulsemixer") },
+	{ MODKEY|ShiftMask,		XK_b,		spawn, 	SHCMD(TERMINAL " -e ranger") },
 	{ MODKEY|ShiftMask,		XK_d,	   spawn,	   SHCMD("discord") },
 	{ MODKEY,			XK_w,	   spawn,	   SHCMD("firefox") },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
@@ -80,7 +81,6 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY, 	                XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY|ShiftMask,             XK_f,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
@@ -88,6 +88,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_m, tagmon,         {.i = +1 } }, //only one of these becuase I have 2 monitors, change if 3
 	{ MODKEY,                       XK_x,  setgaps,        {.i = -2 } },
 	{ MODKEY,                       XK_z,  setgaps,        {.i = +2 } },
+	{ MODKEY,	                XK_f,      togglefullscr,  {0} },
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
