@@ -82,6 +82,14 @@ static Key keys[] = {
 	{ MODKEY,			XK_r,	   spawn, 	   SHCMD(TERMINAL " -e ranger") },
 	{ MODKEY|ShiftMask,		XK_d,	   spawn,	   SHCMD("discord") },
 	{ MODKEY,			XK_w,	   spawn,	   SHCMD("firefox") },
+
+	//mpc binds
+	{ MODKEY,			XK_period, 		   spawn, 	   	SHCMD("mpc next") },
+	{ MODKEY,			XK_comma, 		   spawn,     	        SHCMD("mpc prev") },
+	{ MODKEY,			XK_p,			   spawn,		SHCMD("mpc toggle")},
+	{ MODKEY,			XK_bracketleft,		   spawn,		SHCMD("mpc seek -10") },
+	{ MODKEY,			XK_bracketright,	   spawn,		SHCMD("mpc seek +10") },
+
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
