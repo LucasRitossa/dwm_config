@@ -1,5 +1,8 @@
 # My DWM config
 
-## This DWM config contains only one patch (fullgaps), and some keybinds I like along with a custom font
+## Patches 
+- fullgaps
+- alpha
+- trueFullscreen
 
- To compile run **make install**
+This config is quite barebones in its current state, being updated rapidly 
