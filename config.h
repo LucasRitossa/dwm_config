@@ -2,29 +2,31 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 4;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 28;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "undefined-medium:pixelsize=20:antialias=false:autohint=true:" };
-static const char dmenufont[]       = "undefined-medium:size=15";
+static const char dmenufont[]       = "undefined-medium:pixelsize=15:antialias=false:autohint=true:";
 //background color
 static const char col_gray1[]       = "#6a4e70";
 //inactive window border color
-static const char col_gray2[]       = "#444444";
+static const char col_gray2[]       = "#6a4e70";
 //font color
 static const char col_gray3[]       = "#aaaaaa";
 //current tag font color
 static const char col_gray4[]       = "#ffffff";
 //top bar color
-static const char col_cyan[]        = "#6a4e70";
+static const char col_cyan_bg[]     = "#6a4e70";
+//selelected border color
+static const char col_cyan[]	    = "#fffaa5";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	[SchemeSel]  = { col_gray4, col_cyan_bg,  col_cyan  },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
@@ -75,13 +77,14 @@ static const char *termcmd[]  = { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
-	{ MODKEY,             		XK_Return, spawn,    	   {.v = termcmd } },
-	{ MODKEY|ShiftMask,		XK_r,  	   spawn, 	   SHCMD(TERMINAL " -e htop") },
-	{ MODKEY|ShiftMask,		XK_b,	   spawn, 	   SHCMD(TERMINAL " -e pulsemixer") },
-	{ MODKEY,			XK_r,	   spawn, 	   SHCMD(TERMINAL " -e ranger") },
-	{ MODKEY|ShiftMask,		XK_d,	   spawn,	   SHCMD("discord") },
-	{ MODKEY,			XK_w,	   spawn,	   SHCMD("firefox") },
+	{ MODKEY,                       XK_d,      spawn,      {.v = dmenucmd } },
+	{ MODKEY,                       XK_Return, spawn,    	 {.v = termcmd } },
+	{ MODKEY|ShiftMask,             XK_r,  	   spawn, 	   SHCMD(TERMINAL " -e htop") },
+	{ MODKEY|ShiftMask,             XK_b,	     spawn, 	   SHCMD(TERMINAL " -e pulsemixer") },
+	{ MODKEY,			                  XK_y,      spawn, 	   SHCMD(TERMINAL " -e ncmpcpp") },
+	{ MODKEY,			                  XK_r,      spawn, 	   SHCMD(TERMINAL " -e ranger") },
+	{ MODKEY|ShiftMask,             XK_d,	     spawn,	     SHCMD("discord") },
+	{ MODKEY,			                  XK_w,      spawn,	     SHCMD("firefox-nightly") },
 
 	//mpc binds
 	{ MODKEY,			XK_period, 		   spawn, 	   	SHCMD("mpc next") },
