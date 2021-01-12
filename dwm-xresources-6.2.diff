@@ -1,5 +1,19 @@
---- config.def.h
-+++ config.def.h
+From 2832bd78a690606a48a7e1d370cd60fd92ee4988 Mon Sep 17 00:00:00 2001
+From: MLquest8 <miskuzius@gmail.com>
+Date: Fri, 12 Jun 2020 15:43:31 +0400
+Subject: [PATCH] handle various setting of various types from Xresources
+
+---
+ config.def.h | 54 ++++++++++++++++++++++++++-------------
+ drw.c        |  2 +-
+ drw.h        |  2 +-
+ dwm.c        | 72 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 111 insertions(+), 19 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 1c0b587..e69f288 100644
+--- a/config.def.h
++++ b/config.def.h
 @@ -1,21 +1,22 @@
  /* See LICENSE file for copyright and license details. */
  
@@ -36,8 +50,53 @@
  };
  
  /* tagging */
---- drw.c
-+++ drw.c
+@@ -32,9 +33,9 @@ static const Rule rules[] = {
+ };
+ 
+ /* layout(s) */
+-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+-static const int nmaster     = 1;    /* number of clients in master area */
+-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
++static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
++static int nmaster     = 1;    /* number of clients in master area */
++static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+ 
+ static const Layout layouts[] = {
+ 	/* symbol     arrange function */
+@@ -56,9 +57,28 @@ static const Layout layouts[] = {
+ 
+ /* commands */
+ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
++static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
+ static const char *termcmd[]  = { "st", NULL };
+ 
++/*
++ * Xresources preferences to load at startup
++ */
++ResourcePref resources[] = {
++		{ "normbgcolor",        STRING,  &normbgcolor },
++		{ "normbordercolor",    STRING,  &normbordercolor },
++		{ "normfgcolor",        STRING,  &normfgcolor },
++		{ "selbgcolor",         STRING,  &selbgcolor },
++		{ "selbordercolor",     STRING,  &selbordercolor },
++		{ "selfgcolor",         STRING,  &selfgcolor },
++		{ "borderpx",          	INTEGER, &borderpx },
++		{ "snap",          		INTEGER, &snap },
++		{ "showbar",          	INTEGER, &showbar },
++		{ "topbar",          	INTEGER, &topbar },
++		{ "nmaster",          	INTEGER, &nmaster },
++		{ "resizehints",       	INTEGER, &resizehints },
++		{ "mfact",      	 	FLOAT,   &mfact },
++};
++
+ static Key keys[] = {
+ 	/* modifier                     key        function        argument */
+ 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+diff --git a/drw.c b/drw.c
+index 4cdbcbe..8f1059e 100644
+--- a/drw.c
++++ b/drw.c
 @@ -208,7 +208,7 @@ drw_clr_create(Drw *drw, Clr *dest, const char *clrname)
  /* Wrapper to create color schemes. The caller has to call free(3) on the
   * returned color scheme when done using it. */
@@ -47,8 +106,10 @@
  {
  	size_t i;
  	Clr *ret;
---- drw.h
-+++ drw.h
+diff --git a/drw.h b/drw.h
+index 4bcd5ad..42b04ce 100644
+--- a/drw.h
++++ b/drw.h
 @@ -39,7 +39,7 @@ void drw_font_getexts(Fnt *font, const char *text, unsigned int len, unsigned in
  
  /* Colorscheme abstraction */
@@ -58,8 +119,10 @@
  
  /* Cursor abstraction */
  Cur *drw_cur_create(Drw *drw, int shape);
---- dwm.c
-+++ dwm.c
+diff --git a/dwm.c b/dwm.c
+index 9fd0286..dc0d219 100644
+--- a/dwm.c
++++ b/dwm.c
 @@ -36,6 +36,7 @@
  #include <X11/Xlib.h>
  #include <X11/Xproto.h>
@@ -167,3 +230,6 @@
  	setup();
  #ifdef __OpenBSD__
  	if (pledge("stdio rpath proc exec", NULL) == -1)
+-- 
+2.26.2
+

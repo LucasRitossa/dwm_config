@@ -7,10 +7,11 @@ static const unsigned int gappx     = 28;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "undefined-medium:pixelsize=20:antialias=false:autohint=true:" };
-static const char dmenufont[]       = "undefined-medium:pixelsize=20:antialias=false:autohint=true:";
+static const char *fonts[]          = { "InputMono-Regular:pixelsize=19:antialias=true:autohint=true" };
+
+static const char dmenufont[]       = "InputMono-Regular:pixelsize=19:antialias=true:autohint=true";
 //background color
-static const char col_gray1[]       = "#282828";
+static const char col_gray1[]       = "#1c1b19";
 //inactive window border color
 static const char col_gray2[]       = "#a89984";
 //font color
@@ -18,7 +19,7 @@ static const char col_gray3[]       = "#aaaaaa";
 //current tag font color
 static const char col_gray4[]       = "#ffffff";
 //top bar color
-static const char col_cyan_bg[]     = "#282828";
+static const char col_cyan_bg[]     = "#1c1b19";
 //selelected border color
 static const char col_cyan[]	    = "#fffaa5";
 static const unsigned int baralpha = 0xd0;
