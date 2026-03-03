@@ -1,5 +1,5 @@
 /* See LICENSE file for copyright and license details. */
-#define TERMINAL "st"
+#define TERMINAL "alacritty"
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -44,7 +44,7 @@ static const Rule rules[] = {
 	 */
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "flameshot",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "Alacritty", NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ "qemu-system-x86_64",    NULL,     NULL,           1,         0,          1,           1,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
@@ -90,7 +90,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -102,7 +102,7 @@ static Key keys[] = {
   { MODKEY,                       XK_r,      spawn,      SHCMD(TERMINAL " -e lf") },
   { MODKEY|ShiftMask,             XK_e,      spawn,      SHCMD("flameshot gui") },
   { MODKEY|ShiftMask,             XK_d,      spawn,      SHCMD("discord") },
-  { MODKEY,                       XK_w,      spawn,      SHCMD("firefox") },
+  { MODKEY,                       XK_w,      spawn,      SHCMD("librewolf") },
 
   { MODKEY,     XK_period,       spawn,       SHCMD("mpc next") },
   { MODKEY,     XK_comma,        spawn,               SHCMD("mpc prev") },
