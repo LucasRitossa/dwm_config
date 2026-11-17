@@ -44,7 +44,7 @@ static const Rule rules[] = {
 	 */
 	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "flameshot",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Alacritty", NULL,     NULL,           0,         0,          1,           0,        -1 },
+	{ "kitty", NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ "qemu-system-x86_64",    NULL,     NULL,           1,         0,          1,           1,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
